@@ -1,0 +1,12 @@
+{
+  "name": "dida365-skill",
+  "version": "1.0.0",
+  "description": "OpenClaw Skill for Dida365/TickTick - Task management integration",
+  "type": "module",
+  "keywords": ["dida365", "ticktick", "openclaw", "skill", "task-manager"],
+  "author": "Benjamin Tang",
+  "license": "MIT",
+  "dependencies": {
+    "dida365-cli": "^1.0.0"
+  }
+}
