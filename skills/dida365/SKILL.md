@@ -59,7 +59,6 @@ dida365 tasks complete --task-id <taskId>
 - `--reminder` — Reminder (can repeat)
 - `--repeat-flag` — Repeat rule
 - `--tag` — Add tag (repeatable)
-- `--disable-required-tags` — Disable auto "cli" tag
 
 **Examples:**
 ```bash
@@ -72,6 +71,19 @@ dida365 tasks create --title "Exercise" --project-id PERSONAL_ID --repeat-flag "
 # Task with custom tags
 dida365 tasks create --title "Buy milk" --project-id PERSONAL_ID --tag shopping --tag urgent
 ```
+
+## Tags（标签）
+
+给任务打标签使用 `--tag <标签>` 参数；该参数**可重复多次**来表示"标签列表"。
+
+```bash
+dida365 tasks create --title "Buy milk" --project-id PERSONAL_ID \
+  --tag shopping --tag urgent --tag 家庭
+```
+
+注意：不要把多个标签写在同一个 `--tag` 里（例如 `--tag "work,urgent"`），那通常会被当成**一个**标签字符串。
+
+建议保持语言一致：中文任务标题搭配中文标签；英文标题搭配英文标签（便于筛选/搜索）。
 
 ## Viewing Tasks
 
@@ -96,6 +108,9 @@ dida365 projects list
 
 ## Configuration
 
+更多可配置项（配置文件字段、优先级、以及 config set/get 等用法）请查看 dida365 CLI 的 README：
+- https://github.com/benj-tang/dida365-cli
+
 **Config file locations (in priority order):**
 1. `--config <path>` — CLI flag
 2. `./dida365.config.json` — Current directory
@@ -104,10 +119,9 @@ dida365 projects list
 **Default values:**
 - API: `https://api.dida365.com/open/v1`
 - Timezone: `Asia/Shanghai`
-- Tags: `["cli"]`
 - Cache: 10 min (tasks), 7 days (projects)
 
-**Customize tags:**
+**Tag 相关配置示例：**
 ```json
 {
   "requiredTags": ["work", "important"],
@@ -135,8 +149,6 @@ dida365 projects list
 
 ## Tagging Rules
 
-- **Default:** Auto-adds `"cli"` tag
-- **Disable:** Set `enableRequiredTags: false` in config
-- **Language match:** Chinese title → Chinese tags; English → English tags
+- **Language match:** Chinese title → Chinese tags; English title → English tags
 
 See [REFERENCE.md](REFERENCE.md#tags-标签) for full tagging guide.
